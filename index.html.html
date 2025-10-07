@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CueBiQue's Epic About Me — Magic, Tech & a Dash of Chaos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Montserrat:700|Caveat:700|Roboto:500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="about me.css">
+</head>
+<body>
+
+  <!-- Background Images -->
+  <div class="bg-image" id="bg-image-1"></div>
+  <div class="bg-image" id="bg-image-2"></div>
+  <div class="bg-image" id="bg-image-3"></div>
+  <div class="bg-image" id="bg-image-4"></div>
+
+  <div id="slides-container">
+    <div class="slide active" id="slide-0">
+      <h2>✨ CueBiQue — a different person</h2>
+      <div class="funny">
+        Yo, I'm Soham (aka <b>CueBiQue</b> — or just "Cue" if you're lazy)! I code, run, eat, play badminton, paint, and occasionally pretend to be an entrepreneur. Rumor has it, I'm composed of <b>30% stardust, 60% code, and 10% "love"</b> — so yeah, I'm literally out here trying to be trending both on Earth & in the cosmos. <br><br>
+        <span style="color:var(--accent);font-size:1.1em;">
+        Swipe an orb below to learn my secrets. Avoid the love orb... it's dangerous.
+        </span>
+      </div>
+    </div>
+
+    <div class="slide" id="slide-1">
+      <h2>🪐 Hobbies & Music</h2>
+      <div>
+        I listen to music (<b>Alan Walker</b> ❤️ <span class="music-link"><a href="https://open.spotify.com/artist/5CnZxJztR56pTnB82B2rD4" target="_blank">~ vibe here ~</a></span>), code stuff, run for no reason, play badminton to pretend I'm sporty, and sometimes paint to feel extra creative.
+        <br><br>
+        Physical exercise = running 🏃‍♂️ & smashing birdies 🏸 all day.
+        <br><br>
+        Painting? Rarely. But when I finish a painting, my soul does a little victory dance lol.
+      </div>
+    </div>
+
+    <div class="slide" id="slide-2">
+      <h2>💻 Tech & Big Dreams</h2>
+      <div>
+        <b>Why I code</b>? Because it's what people want. They want descent apps that can solve multiple problems. And one day I'm gonna make it rain (hopefully money, not bugs).
+        <br><br>
+        I've built so many cool apps & hacks, but sorry — patent police says I gotta keep my secrets. Future billionaire, maybe? Or just an MVP in tech support for Windows and coding woes.<br>
+        <span style="font-size:0.98em;color:var(--mainColor);">Need help? DM me. I fix more stuff than my own mood swings.</span>
+      </div>
+    </div>
+
+    <div class="slide" id="slide-3">
+      <h2>👾 School & Squad</h2>
+      <div>
+        Real name: <b>Soham</b><br>
+        Nickname: <b>CueBiQue</b> (just "Cue" for normal humans)<br>
+        Proud Citizen of India 🇮🇳 <br>
+        Student at <b>Delhi Public School Bangalore East</b> — where my talents shine & my friends tolerate me.<br><br>
+        <b>Besties:</b>
+        <div class="discords">
+          <span title="Aarav, Geetesh">Aarav (<i>vurfex</i>), Geetesh (<i>humburger_71</i>)</span>
+        </div>
+        They vibe with code, games just like me lol. My friendships are tighter than my grip on my keyboard.<br>
+        <span style="color:#fff040;">I won't even mention my crush — this site is <b>NDA protected</b> 😂</span>
+      </div>
+    </div>
+
+    <div class="slide" id="slide-4">
+      <h2>🎂 Age Reveal</h2>
+      <div>
+        Everyone asks: "How old is the CueBiQue?"
+        <br><br>
+        <span style="font-size:1.45em;color:var(--mainColor);font-family:'Orbitron',cursive;">I am <span id="age-magic"></span> years old.</span>
+        <br>
+        Born on the coldest date of the year (refer to 7th grade geo tb): <b>22/10/2010</b> <br>
+        (Looks young, codes ancient.)
+      </div>
+    </div>
+  </div>
+
+  <div class="orb-nav" id="orb-nav">
+    <div class="orb active" data-slide="0" title="Celestial Vibes">✨</div>
+    <div class="orb" data-slide="1" title="Hobbies & Music">🎵</div>
+    <div class="orb" data-slide="2" title="Coding">💻</div>
+    <div class="orb" data-slide="3" title="School & Friends">👾</div>
+    <div class="orb" data-slide="4" title="Age">🎂</div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const orbs = document.querySelectorAll('.orb');
+
+    function showSlide(idx) {
+      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+      orbs.forEach((o, i) => o.classList.toggle('active', i === idx));
+      currentSlide = idx;
+    }
+
+    orbs.forEach((orb, idx) => {
+      orb.addEventListener('click', () => showSlide(idx));
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === "ArrowLeft") showSlide((currentSlide + slides.length - 1) % slides.length);
+      if (e.key === "ArrowRight") showSlide((currentSlide + 1) % slides.length);
+    });
+
+    let startX;
+    document.body.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    document.body.addEventListener('touchend', e => {
+      let dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 44) {
+        if (dx > 0) showSlide((currentSlide + slides.length - 1) % slides.length);
+        else showSlide((currentSlide + 1) % slides.length);
+      }
+    });
+
+    function updateAge() {
+      const birth = new Date(2010, 9, 22);
+      const now = new Date();
+      let age = now.getFullYear() - birth.getFullYear();
+      if (now.getMonth() < birth.getMonth() ||
+          (now.getMonth() === birth.getMonth() && now.getDate() < birth.getDate())) {
+        age -= 1;
+      }
+      document.getElementById('age-magic').textContent = age;
+    }
+    updateAge();
+
+    // Background image animation
+    const bgImages = [
+      'ee9c9aefd5ba4b42e75e18262eb9df96-removebg-preview.png',
+      'gradient-blob-shape-abstract-organic-random-form-liquid-fluid-background-amoeba-bubble-and-splash-memphis-element-png.webp',
+      'images-removebg-preview.png',
+      'pngtree-bright-abstract-colorful-gradient-blob-shape-png-image_13143635.png'
+    ];
+
+    // Set background images
+    bgImages.forEach((img, index) => {
+      const bgElement = document.getElementById(`bg-image-${index + 1}`);
+      bgElement.style.backgroundImage = `url('${img}')`;
+      bgElement.style.backgroundSize = 'contain';
+      bgElement.style.backgroundRepeat = 'no-repeat';
+      bgElement.style.backgroundPosition = 'center';
+    });
+
+    // New background animation with bounded movement and faster speed
+    function animateBackgroundImages() {
+      const bgElements = document.querySelectorAll('.bg-image');
+      const imageData = [];
+      
+      // Initialize each background image with random parameters
+      bgElements.forEach((el, index) => {
+        // Random starting position within screen bounds
+        const maxWidth = window.innerWidth - el.offsetWidth;
+        const maxHeight = window.innerHeight - el.offsetHeight;
+        
+        const startX = Math.random() * maxWidth;
+        const startY = Math.random() * maxHeight;
+        
+        // Increased movement speed (much faster)
+        const speedX = (Math.random() - 0.5) * 3.0;  // Increased from 1.5
+        const speedY = (Math.random() - 0.5) * 2.4;  // Increased from 1.2
+        
+        // Size and rotation parameters with faster changes
+        const baseSize = 0.8 + Math.random() * 0.4;
+        const sizeSpeed = 0.006 + Math.random() * 0.006;  // Doubled from 0.003
+        const rotationSpeed = (Math.random() - 0.5) * 1.6; // Doubled from 0.8
+        
+        imageData[index] = {
+          x: startX,
+          y: startY,
+          speedX: speedX,
+          speedY: speedY,
+          baseSize: baseSize,
+          sizeSpeed: sizeSpeed,
+          rotationSpeed: rotationSpeed,
+          time: Math.random() * 100
+        };
+        
+        // Set initial position
+        el.style.transform = `translate(${startX}px, ${startY}px) scale(${baseSize}) rotate(0deg)`;
+      });
+      
+      function moveImages() {
+        bgElements.forEach((el, index) => {
+          const data = imageData[index];
+          data.time += 0.016;
+          
+          // Update position with boundary checking
+          data.x += data.speedX;
+          data.y += data.speedY;
+          
+          // Bounce off edges
+          const maxWidth = window.innerWidth - el.offsetWidth;
+          const maxHeight = window.innerHeight - el.offsetHeight;
+          
+          if (data.x <= 0 || data.x >= maxWidth) {
+            data.speedX *= -1;
+            data.x = Math.max(0, Math.min(data.x, maxWidth));
+          }
+          
+          if (data.y <= 0 || data.y >= maxHeight) {
+            data.speedY *= -1;
+            data.y = Math.max(0, Math.min(data.y, maxHeight));
+          }
+          
+          // Calculate size and rotation with faster changes
+          const size = data.baseSize + Math.sin(data.time * data.sizeSpeed) * 0.2;
+          const rotation = data.time * data.rotationSpeed;
+          
+          // Apply transforms
+          el.style.transform = `translate(${data.x}px, ${data.y}px) scale(${size}) rotate(${rotation}deg)`;
+        });
+        
+        requestAnimationFrame(moveImages);
+      }
+      
+      moveImages();
+    }
+
+    // Start the background animation when the page loads
+    window.addEventListener('load', animateBackgroundImages);
+  </script>
+
+</body>
+</html>
